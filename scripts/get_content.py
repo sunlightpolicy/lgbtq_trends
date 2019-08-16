@@ -266,6 +266,7 @@ def get_hrefs(urls):
                                                              8))
                 latest_version = list(dump)[::-1][0]
                 wayback_url = latest_version.raw_url
+                #print(wayback_url)
                 wayback_date = latest_version.date
                 contents = requests.get(wayback_url).content.decode()
                 soup = BeautifulSoup(contents, 'lxml')
@@ -290,7 +291,7 @@ def get_hrefs(urls):
                             'fortlauderdale', 'nysed', 'nycourts']
                     not_accepted = ['.pdf', '.doc', '.docx', '.rtf',
                                     'news', 'blog', 'espanol', 'spanish'
-                                    ] + states + other
+                                    '.pptx'] + states + other
                     if not any(element in link for element in not_accepted):
                         if '.gov' in link: #only .gov links
                             #print(wayback_date)
