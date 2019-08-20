@@ -28,7 +28,7 @@ analyzed, seven saw decreases in the use of LGBTQ-related terms. Some
 departments saw some degree of substitution, using more inclusive terms, whereas
 others, like HUD, saw decreases across the board.
 
-**Figure. Absolute Changes by Department**
+**Figure 1. Absolute Changes by Department**
 ![Image](https://github.com/sunlightpolicy/lgbtq_trends/blob/master/images/changes_department.png "Changes by department")
 
 Read more about our results [here](https://linktoreport)
@@ -50,12 +50,12 @@ This repository's structure is as follows:
 
 ```
 .
-├── ...
-├── `src/`                           # Contains all code for this project
-│   ├── `content_analysis.ipynb/`    # Shows the analysis and results
-│   ├── `images/`                    # .png files
-│   ├── `inputs/`                    # Input csv files for analysis
-│   ├── `outputs/`                   # Output files
-│   └── `scripts/`                   # Modules of code
-└── ...
+├── README.md                         
+├── requirements.txt                 
+└── src/                             # Contains all code and outputs
+    ├── content_analysis.ipynb       # Shows the analysis and results
+    ├── images/                      # Contains image .png files
+    ├── inputs/                      # Contains input and intermediary files
+    ├── outputs/                     # Contains all generated output files
+    └── scripts/                     # Contains all code for this project
 ```
