@@ -43,6 +43,6 @@ analyzed, seven saw decreases in the use of LGBTQ-related terms. Some
 departments saw some degree of substitution, using more inclusive terms, whereas
 others, like HUD, saw decreases across the board.
 
-![alt text](https://github.com/sunlightpolicy/lgbtq_trends/images/changes_department.png "Changes by department")
+![Image](https://github.com/sunlightpolicy/lgbtq_trends/blob/master/images/changes_department.png "Changes by department")
 
 Read more about our results [here](https://link to the report)
