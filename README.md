@@ -48,6 +48,7 @@ package is correctly installed:
 ## Repository structure
 This repository's structure is as follows:
 
+```
 .
 ├── ...
 ├── `src/`                           # Contains all code for this project
@@ -57,3 +58,4 @@ This repository's structure is as follows:
 │   ├── `outputs/`                   # Output files
 │   └── `scripts/`                   # Modules of code
 └── ...
+```
