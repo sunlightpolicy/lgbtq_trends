@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import matplotlib
 import pickle
-from brokenaxes import brokenaxes
 import matplotlib.ticker as ticker
 from scipy import stats
 from IPython.display import display_html
@@ -144,7 +143,7 @@ def get_changes(df_pre, df_post, id_col, term_cols, ttal_col, department_name=No
         changes_df = changes.sort_values().reset_index().rename(columns={'index': 'term', 0: 'change'}).dropna()
         changes_df = changes_df[changes_df.change != 0]
 
-        return changes_df
+        return changes_df, pct_pre * 100, pct_post * 100
     else:
         # slice data with term columns and take post - pre difference
         changes = df_post[term_cols] - df_pre[term_cols]
@@ -202,6 +201,8 @@ def plot_dpt_changes(df_pre, df_post, cols, control_terms, exclude=None):
                    'pre': df_dpt_pre.counts,
                    'post': df_dpt_post.counts})
 
+    df['change'] = ((df.post / df.pre) - 1) * 100
+
     if exclude:
         df = df[df.department != exclude]
     ordered_df = df.sort_values(by='pre')
@@ -212,9 +213,24 @@ def plot_dpt_changes(df_pre, df_post, cols, control_terms, exclude=None):
     ax.hlines(y=my_range, xmin=ordered_df['pre'], xmax=ordered_df['post'], alpha=0.4)
     ax.scatter(ordered_df['pre'], my_range, color='cornflowerblue', alpha=0.5, label='pre')
     ax.scatter(ordered_df['post'], my_range, color='firebrick', alpha=0.5, label='post')
+    #print(ordered_df.post, ordered_df.change)
+    #print(ordered_df)
+    for i, label in enumerate(ordered_df.change[:-1]):
+        x = ordered_df.post.iloc[i]
+        y = my_range[i]
+        label = str(round(label,2)) + ' %'
+        #print(x, y, label)
+        ax.text(x, y + 0.3, label, fontsize=7)
     ax2.hlines(y=my_range, xmin=ordered_df['pre'], xmax=ordered_df['post'], alpha=0.4)
     ax2.scatter(ordered_df['pre'], my_range, color='cornflowerblue', alpha=0.5, label='pre')
     ax2.scatter(ordered_df['post'], my_range, color='firebrick', alpha=0.5, label='post')
+    for i, label in enumerate(ordered_df.change):
+        if i == len(ordered_df.change) - 1:
+            x = ordered_df.post.iloc[i]
+            y = my_range[i]
+            label = str(round(label,2)) + ' %'
+            #print(x, y, label)
+            ax2.text(x, y + 0.3, label, fontsize=7)
 
     ax.set_xlim(0, 1000)
     ax2.set_xlim(5400, 5800)
@@ -239,9 +255,13 @@ def plot_dpt_changes(df_pre, df_post, cols, control_terms, exclude=None):
     plt.setp(ax.get_xticklabels()[6], visible=False)
     plt.setp(ax2.get_xticklabels()[0], visible=False)
     plt.subplots_adjust(wspace=0.04) #space between plots
-    ordered_df['change'] = ((ordered_df.post / ordered_df.pre) - 1) * 100
+    '''
+    for line in range(0, ordered_df.shape[0]):
+        ax.text(ordered_df.post[line]+0.2, ordered_df.department[line], ordered_df.change[line],
+            horizontalalignment='left', size='medium', color='black', weight='semibold')
+    '''
 
-    return ordered_df.sort_values(by='change').set_index('department').rename_axis(None)
+    return ordered_df #.sort_values(by='change').set_index('department').rename_axis(None)
 
 def plot_boxplot(df_pre, df_post):
     '''
