@@ -9,7 +9,7 @@ policy stances or attitudes vis a vis the former previous administration’s
 policy on LGBTQ rights.
 
 ## Introduction
-To analyze the text from our set of web pages these scripts adap [EDGI’s
+To analyze the text from our set of web pages these scripts adapt [EDGI’s
 code](https://github.com/ericnost/EDGI) and extend its functionality to
 support sentiment analysis that is tailored to the set of analyzed URLs.
 To compare websites before and after the 2017 inauguration, we rely
@@ -19,10 +19,13 @@ on websites archived on the Internet Archive’s Wayback Machine [IAWM](https://
 - Python 3.x
 - For the sentiment analysis you will need to make sure that the `pysentiment`
 package is correctly installed:
+
 `pip install git+https://github.com/hanzhichao2000/pysentiment`
+
 If the "static" folder does not download, you will need to download it and then
 copy it to your python packages location, which should look like this:
-`cp -R STATIC FOLDER LOCATION '/usr/local/lib/python3.7/site-packages/pysentiment'`
+
+`cp -R STATIC YOUR_DOWNLOAD_PATH '/usr/local/lib/python3.7/site-packages/pysentiment'`
 
 ## Methodology
 We pooled together a set of WIP-identified URLs (1) with a set of URLs coming
