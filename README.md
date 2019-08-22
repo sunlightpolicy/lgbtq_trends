@@ -29,7 +29,7 @@ departments saw some degree of substitution, using more inclusive terms, whereas
 others, like HUD, saw decreases across the board.
 
 **Figure 1. Absolute Changes by Department**
-![Image](https://github.com/sunlightpolicy/lgbtq_trends/blob/master/src/images/changes_department.png "Changes by department")
+![Image](https://github.com/sunlightpolicy/lgbtq_trends/blob/master/src/images/fig4.png "Changes by department")
 
 Read more about our results [here](https://linktoreport)
 
@@ -73,4 +73,4 @@ package is correctly installed:
   copy it to your python packages `pysentiment`folder, which should look like this:
 
   `cp -R STATIC YOUR_DOWNLOAD_PATH '/usr/local/lib/python3.7/site-packages/pysentiment'`
-- To run `selenium` you will need to make sure that your Chrome Browser's version (which you csn check on your browser's menu: `Chrome > About Chrome`) matches the provided ChromeDriver version (76.0.3809.126). You can download and substitute the driver with the latest [version](https://sites.google.com/a/chromium.org/chromedriver/downloads).
+- To run `selenium` you will need to make sure that your Chrome Browser's version (which you can check on your browser's menu: `Chrome > About Chrome`) matches the provided ChromeDriver version (76.0.3809.126). You can download and substitute the driver with the latest [version](https://sites.google.com/a/chromium.org/chromedriver/downloads).
