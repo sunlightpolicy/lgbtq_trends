@@ -4,11 +4,19 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import matplotlib
 import pickle
+import math
 import matplotlib.ticker as ticker
+from matplotlib.colors import ListedColormap
 from scipy import stats
 from IPython.display import display_html
 
-sns.set_style("whitegrid")
+#sns.set_style("whitegrid")
+# setting sunlight foundation colors for graphs
+sns.set(font='Arial', style="whitegrid")
+sunlight = ["#d9b80d", "#ce4500", "#2e565a", "#323235", "#fafaf5"]
+color_codes_wanted = ['yellow', 'red', 'blue', 'black', 'cream']
+c = lambda x: sunlight[color_codes_wanted.index(x)]
+sns.set_palette(sunlight)
 
 def fetch_additional_data(txt_name, multi_word_terms, one_word_terms):
     '''
@@ -160,18 +168,80 @@ def get_changes(df_pre, df_post, id_col, term_cols, ttal_col, department_name=No
         return changes_df
 
 def plot_bars(df, x_col, y_col, department_name=None):
+    '''
+    Bar plot function
+    '''
     g = sns.catplot(x=x_col, y=y_col, data=df,
                 kind='bar', legend=False,
-                palette="coolwarm")
-    g.set_xticklabels(rotation=90)
+                height=5, aspect=6/5,
+                color=c('yellow'))
+                #palette=sns.light_palette(c('blue'), n_colors=50)
+    g.set_xticklabels(rotation=90, fontsize=9)
     g.ax.set_title(department_name)
+    g.ax.set(xlabel='Term', ylabel='Change')
 
 
 
 def plot_changes_dept(df_pre_merged, df_post_merged, col_names, department_list):
     '''
+    Plot changes by department
     '''
+    n_cols = 2
+    n_rows = math.ceil(len(department_list) / n_cols)
+    print('number of rows', n_rows)
+    if n_rows == 2:
+        fig, axs = plt.subplots(n_rows, n_cols, figsize=(7.5, 7.5))
+    elif n_rows == 3:
+        fig, axs = plt.subplots(n_rows, n_cols, figsize=(7.5, 9.5))
 
+    for i, department_name in enumerate(department_list):
+        df = get_changes(df_pre_merged, df_post_merged, 'id',
+             col_names, 'ttal', department_name, pctg=False)
+        plt.subplot(n_rows, n_cols, i + 1)
+        plt.xlabel("Terms", fontsize=9, fontfamily='Arial')
+        plt.ylabel("Change", fontsize=9, fontfamily='Arial')
+        plt.title(department_name, fontsize=10, fontfamily='Arial')
+        plt.grid(which='major', axis='x')
+        plt.xticks(rotation='vertical', fontsize=8, fontfamily='Arial')
+        plt.yticks(fontsize=8, fontfamily='Arial')
+        plt.gca().spines['right'].set_color('none')
+        plt.gca().spines['top'].set_color('none')
+        plt.bar(df['term'], df['change'], color="#d9b80d")
+    if len(department_list) % 2 != 0:
+        plt.delaxes(axs[n_cols - 1, n_rows - 1])
+    plt.tight_layout()
+    plt.show()
+    plt.savefig('fig5')
+    '''
+    titles, x_lists, y_lists = my_other_module.get_data()
+
+    fig = plt.figure(figsize=(10,60))
+    for i, y_list in enumerate(y_lists):
+        plt.subplot(len(titles), 1, i)
+        plt.xlabel("Some X label")
+        plt.ylabel("Some Y label")
+        plt.title(titles[i])
+        plt.plot(x_lists[i],y_list)
+    fig.savefig('out.png', dpi=100)
+
+    idx = 0
+    for ro in range(0, n_rows):
+        for co in range(0, n_cols): # two columns
+            print('index', idx)
+            if idx <= len(department_list) - 1:
+                df = get_changes(df_pre_merged, df_post_merged, 'id',
+                     col_names, 'ttal', department_list[idx], pctg=False)
+                print(department_list[idx], ro, co)
+                sns.catplot(x='term', y='change', data=df,
+                            kind='bar', legend=False,
+                            color=c('yellow'),
+                            ax=axs[ro][co])
+                idx += 1
+    plt.tight_layout()
+    plt.show()
+
+    f.show()
+    fig, axs = plt.subplots(2, 2)
     for department_name in department_list:
         try:
             #rel_changes = a.get_changes(df_pre_merged, df_post_merged, 'id', col_names, 'ttal', department_name, pctg=True)
@@ -179,13 +249,15 @@ def plot_changes_dept(df_pre_merged, df_post_merged, col_names, department_list)
             plot_bars(abs_changes, 'term', 'change', department_name)
         except:
             pass
+    '''
 
 
 def plot_dpt_changes(df_pre, df_post, cols, control_terms, exclude=None):
     '''
-    # https://python-graph-gallery.com/184-lollipop-plot-with-2-groups/
+    Plots discontinuous lollipop graph
+    Source: https://python-graph-gallery.com/184-lollipop-plot-with-2-groups/
     '''
-    #sns.color_palette("qualitative")
+    # handle data
     col_names = cols[:]
     for c_term in control_terms:
         col_names.remove(c_term)
@@ -206,31 +278,29 @@ def plot_dpt_changes(df_pre, df_post, cols, control_terms, exclude=None):
     if exclude:
         df = df[df.department != exclude]
     ordered_df = df.sort_values(by='pre')
-    #ordered_df['department'] = ordered_df['department'].apply(shorten_name)
+    # now plot it
+    # left part of the plot
     my_range = range(1, len(df.index) + 1)
-
     f, (ax, ax2) = plt.subplots(1, 2, sharey=True, gridspec_kw={'width_ratios': [3, 1]})
     ax.hlines(y=my_range, xmin=ordered_df['pre'], xmax=ordered_df['post'], alpha=0.4)
-    ax.scatter(ordered_df['pre'], my_range, color='cornflowerblue', alpha=0.5, label='pre')
-    ax.scatter(ordered_df['post'], my_range, color='firebrick', alpha=0.5, label='post')
-    #print(ordered_df.post, ordered_df.change)
-    #print(ordered_df)
+    ax.scatter(ordered_df['pre'], my_range, color="#2e565a", label='pre', s=80)
+    ax.scatter(ordered_df['post'], my_range, color="#d9b80d", label='post', s=80)
     for i, label in enumerate(ordered_df.change[:-1]):
         x = ordered_df.post.iloc[i]
         y = my_range[i]
-        label = str(round(label,2)) + ' %'
-        #print(x, y, label)
-        ax.text(x, y + 0.3, label, fontsize=7)
+        label = str(round(label, 2)) + ' %'
+        ax.text(x, y + 0.3, label, fontsize=9)
+    # right part of the plot
     ax2.hlines(y=my_range, xmin=ordered_df['pre'], xmax=ordered_df['post'], alpha=0.4)
-    ax2.scatter(ordered_df['pre'], my_range, color='cornflowerblue', alpha=0.5, label='pre')
-    ax2.scatter(ordered_df['post'], my_range, color='firebrick', alpha=0.5, label='post')
+    ax2.scatter(ordered_df['pre'], my_range, color="#2e565a", label='pre', s=80)
+    ax2.scatter(ordered_df['post'], my_range, color="#d9b80d", label='post', s=80)
     for i, label in enumerate(ordered_df.change):
+        # last data point
         if i == len(ordered_df.change) - 1:
             x = ordered_df.post.iloc[i]
             y = my_range[i]
-            label = str(round(label,2)) + ' %'
-            #print(x, y, label)
-            ax2.text(x, y + 0.3, label, fontsize=7)
+            label = str(round(label, 2)) + ' %'
+            ax2.text(x, y + 0.3, label, fontsize=9)
 
     ax.set_xlim(0, 1000)
     ax2.set_xlim(5400, 5800)
@@ -244,36 +314,44 @@ def plot_dpt_changes(df_pre, df_post, cols, control_terms, exclude=None):
     ax2.plot((-d, +d), (1-d, 1+d), **kwargs)
     ax2.plot((-d, +d), (-d, +d), **kwargs)
 
-
-    plt.legend(loc='lower right')
-    plt.yticks(my_range, ordered_df['department'])
-
     ax2.xaxis.set_major_locator(ticker.MultipleLocator(200))
     ax.xaxis.set_major_locator(ticker.MultipleLocator(200))
-
     # make x label not visible at a certain position
     plt.setp(ax.get_xticklabels()[6], visible=False)
     plt.setp(ax2.get_xticklabels()[0], visible=False)
-    plt.subplots_adjust(wspace=0.04) #space between plots
-    '''
-    for line in range(0, ordered_df.shape[0]):
-        ax.text(ordered_df.post[line]+0.2, ordered_df.department[line], ordered_df.change[line],
-            horizontalalignment='left', size='medium', color='black', weight='semibold')
-    '''
+    plt.subplots_adjust(wspace=0.03) #space between plots
+    #changing to arial and
+    for tick in ax.yaxis.get_major_ticks():
+        tick.label.set_fontfamily('Arial')
+        tick.label.set_fontsize(9)
+    for tick in ax.xaxis.get_major_ticks():
+        tick.label.set_fontfamily('Arial')
+        tick.label.set_fontsize(9)
+    for tick in ax2.xaxis.get_major_ticks():
+        tick.label.set_fontfamily('Arial')
+        tick.label.set_fontsize(9)
+
+    plt.legend(loc='lower right', fontsize=9)
+    plt.yticks(my_range, ordered_df['department'])
+    f.text(0.5, 0.04, 'Total term count', ha='center', va='center', fontsize=11)
+    f.set_size_inches(6, 5)
 
     return ordered_df #.sort_values(by='change').set_index('department').rename_axis(None)
 
 def plot_boxplot(df_pre, df_post):
     '''
+    Plot boxplot
     '''
     df_boxplot = df_pre
     df_boxplot['time'] = 'pre'
     df_post['time'] = 'post'
     df_boxplot = df_boxplot.append(df_post, ignore_index=True)
-
-    ax = sns.boxplot(x="department", y="subjectivity", hue="time",
-                  data=df_boxplot, palette="coolwarm")
-    ax.set_xticklabels(ax.get_xticklabels(),rotation=90)
+    f, ax = plt.subplots()
+    sns.boxplot(x="department", y="subjectivity", hue="time",
+                  data=df_boxplot, ax=ax)
+    ax.set_xticklabels(ax.get_xticklabels(), rotation=90, fontsize=9)
+    ax.set(xlabel='Department', ylabel='Subjectivity')
+    f.set_size_inches(6, 5)
 
     return df_boxplot
 
@@ -290,7 +368,10 @@ def plot_normal(df_pre, df_post, column):
     df['change'] = df[pre] - df[post]
     df.dropna(inplace=True)
     p_value = stats.shapiro(df['change'])[1]
-    ax = sns.kdeplot(df.change, shade=True, color="sandybrown")
+    f, ax = plt.subplots()
+    f.set_size_inches(6, 5)
+    sns.kdeplot(df.change, shade=True, color=c('blue'), ax=ax)
+    ax.set(xlabel='Score', ylabel='Density')
     normality = True
     if p_value <= (5 / 100):
         print('With a p-value of {}, we reject the null hypothesis that the data was drawn from a normal distribution'.format(p_value))

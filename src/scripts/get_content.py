@@ -7,6 +7,7 @@ from nltk.corpus import stopwords
 from nltk.collocations import *
 from datetime import datetime
 from bs4 import BeautifulSoup
+import savepagenow
 import pandas as pd
 import requests
 import pickle
@@ -56,14 +57,13 @@ class Snapshot:
             for key, obj in dict_urls.items():
                 url = obj['url']
                 visible_text = get_visible_txt(url)
-                #print(url, visible_text)
+                #print(visible_text)
                 # initialize list to store term count results
                 row = [0] * len(self._terms)
                 # count instances on page for each term
                 for idx_t, term in enumerate(self._terms):
                     tally, ttal = term_counter(term, visible_text)
                     row[idx_t] = tally
-                    #print(row)
                 if self.store_text:
                     obj['text'] = visible_text
                 obj['results'] = row
@@ -93,7 +93,7 @@ def get_output(input_file, output_file, terms, dates_1, dates_2, store_text=True
         - terms (lst): list of terms to be looked for
         - dates_1 (lst): list of "pre" date range formatted as
             [year_from, month_from, day_from, year_to, month_to, day_to]
-        - dates_1 (lst): list of "pre" date range formatted as
+        - dates_2 (lst): list of "post" date range formatted as
             [year_from, month_from, day_from, year_to, month_to, day_to]
         - store_text (bool): indicates whether visible text should be stored
             or not
@@ -112,13 +112,15 @@ def get_output(input_file, output_file, terms, dates_1, dates_2, store_text=True
     matrix_post = [[] for i in range(len(data))] # urls restricted by matrix pre
 
     len_data = len(data)
-
     idx_e = 0
     for elmt in tqdm(data, desc='progress: '):
-        #print('--> {} out of {}'.format(idx_e + 1, len_data))
         current_url = elmt[0] # grab url
+        #print(current_url)
         try:
             with internetarchive.WaybackClient() as client:
+                # save current state as you go
+                archive_url, captured = savepagenow.capture_or_cache(current_url)
+                #print(archive_url)
                 # fetch all wayback instances within the date-ranges
                 pre_dump = client.list_versions(current_url,
                                             from_date=datetime(dates_1[0],
@@ -151,7 +153,6 @@ def get_output(input_file, output_file, terms, dates_1, dates_2, store_text=True
                                     snapshot.instantiate_object(latest_version.date, current_version.date)
                                     matrix_post[idx_e] = snapshot.post['results']
                                     matrix_pre[idx_e] = snapshot.pre['results']
-                                    #print('success')
                                     break
                                 elif i_pre == len(pre_versions) - 1:
                                     # not able to retrieve both viable versions succesfully
@@ -178,7 +179,6 @@ def get_output(input_file, output_file, terms, dates_1, dates_2, store_text=True
                             continue
                         break
                 except Exception as e: # unparseable format
-                    #print('interior', e)
                     snapshot = Snapshot(idx_e + 1, current_url, None, terms, store_text)
                     snapshot.status = 'failed'
                     snapshot.exception = e
@@ -186,7 +186,6 @@ def get_output(input_file, output_file, terms, dates_1, dates_2, store_text=True
                     matrix_pre[idx_e] = row
                     matrix_post[idx_e] = row
         except Exception as e: # no wayback url
-            #print('exterior', e)
             snapshot = Snapshot(idx_e + 1, current_url, None, terms, store_text)
             snapshot.status = 'failed'
             snapshot.exception = e
@@ -297,10 +296,84 @@ def get_hrefs(urls):
                             #print(wayback_date)
                             url_set.add(link) #get rid of web.archive part
         except Exception as e:
-            print(e, url)
+            #print(e, url)
             exceptions.append(url)
 
     return url_set, exceptions
+
+################################################################################
+# HUD analysis functions #######################################################
+################################################################################
+
+from selenium import webdriver
+from dateutil.parser import parse
+#import internetarchive
+import requests
+from os import path
+import csv
+import os
+import shutil
+from urllib.parse import urljoin
+import savepagenow
+
+def open_chrome(wayback_url, driver_path):
+    '''
+    '''
+    browser = webdriver.Chrome(executable_path=driver_path)
+    browser.get(wayback_url)
+    return browser
+
+
+def get_urls(browser, analysis_from, analysis_to, output_name):
+    # take all valid urls that existed
+    stored_urls = []
+    try:
+        analysis_from = parse(analysis_from)
+        analysis_to = parse(analysis_to)
+        # get number of pages to go through
+        page_num = int(browser.find_element_by_xpath(
+                        '//a[@class="paginate_button " and @data-dt-idx="7"]').text)
+        #print(page_num)
+        for page in tqdm(range(page_num), desc='progress: '):
+        #for page in range(page_num):
+            #print('***** Working on page ', page)
+            time.sleep(1)
+            links = browser.find_elements_by_xpath('//tr[@role="row"]//td//a[@href]')
+            type = browser.find_elements_by_xpath('//tr[@role="row"]//td[@class=" mimetype"]')
+            dates_from = browser.find_elements_by_xpath('//tr[@role="row"]//td[@class=" dateFrom"]')
+            dates_to = browser.find_elements_by_xpath('//tr[@role="row"]//td[@class=" dateTo"]')
+            if len(links) == len(dates_from) == len(dates_to) == len(type):
+                for i, link in enumerate(links):
+                    current_type = type[i]
+                    current_url = link.get_attribute('href')
+                    if 'text/html' in current_type.text:
+                        #print('got product')
+                        date_from = parse(dates_from[i].text)
+                        date_to = parse(dates_to[i].text)
+                        # make sure wayback snapshots are within range
+                        if not((date_to < analysis_from) or (date_from > analysis_to)):
+                            #print('Not valid ', current_url)
+                        #else:
+                            #print('Success from ', date_from, 'to ', date_to)
+                            stored_urls.append([current_url, date_from, date_to])
+                if page != page_num - 1:
+                    button = browser.find_element_by_xpath(
+                            '//a[@class="paginate_button next" and @id="resultsUrl_next"]')
+            if page != page_num - 1:
+                button.click()
+    except Exception as e:
+        print(e)
+
+    with open(output_name, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerows(stored_urls)
+
+    return stored_urls
+
+    stored_copy = stored_urls[:]
+    len('https://web.archive.org/web/*/')
+    for row in stored_copy:
+        row[0] = row[0][30:]
 
 ################################################################################
 # Helper functions #############################################################
@@ -323,6 +396,7 @@ def read_csv(input_file):
         read = csv.reader(csvfile)
         data = list(read)
         csvfile.close()
+
         return data
 
 def term_counter(term, visible_text):
@@ -331,6 +405,10 @@ def term_counter(term, visible_text):
 
     Inputs:
         - term (str or lst of str):
+
+    Outputs:
+        - tally (int): number of times that the term appears in visible text
+        - ttal_words (int): number of total words in visible text
 
     Attributions: based on EDGI's code
     '''
@@ -364,6 +442,9 @@ def get_visible_txt(url):
 
     Inputs:
         - url (str): a url from a federal government department
+
+    Outputs:
+        - body (lst): list of strings
     '''
     contents = requests.get(url).content.decode()
     contents = BeautifulSoup(contents, 'lxml')
