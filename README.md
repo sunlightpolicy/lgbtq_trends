@@ -27,23 +27,15 @@ the department level, we find that out of the eleven departments that we
 analyzed, seven saw decreases in the use of LGBTQ-related terms. Some
 departments saw some degree of substitution, using more inclusive terms, whereas
 others, like HUD, saw decreases across the board.
-
+<div align="center">
 **Figure 1. Absolute Changes by Department**
-![Image](https://github.com/sunlightpolicy/lgbtq_trends/blob/master/src/images/changes_department.png "Changes by department")
+</div>
+<p align="center">
+  ![Image](https://github.com/sunlightpolicy/lgbtq_trends/blob/master/src/images/changes_department.png "Changes by department")
+</p>
+
 
 Read more about our results [here](https://linktoreport)
-
-## Requirements
-- Python 3.x
-- For the sentiment analysis you will need to make sure that the `pysentiment`
-package is correctly installed:
-
-  `pip install git+https://github.com/hanzhichao2000/pysentiment`
-
-  If the [static folder](https://github.com/hanzhichao2000/pysentiment/tree/master/pysentiment/static) does not download, you will need to download it and then
-  copy it to your python packages location, which should look like this:
-
-  `cp -R STATIC YOUR_DOWNLOAD_PATH '/usr/local/lib/python3.7/site-packages/pysentiment'`
 
 ## Repository structure
 This repository's structure is as follows:
@@ -54,8 +46,35 @@ This repository's structure is as follows:
 ├── requirements.txt                 
 └── src/                             # Contains all code and outputs
     ├── content_analysis.ipynb       # Shows the analysis and results
+    ├── data_detail.csv              # Metadata for obtained url set
     ├── images/                      # Contains image .png files
-    ├── inputs/                      # Contains input and intermediary files
+    ├── inputs/                      # Contains input and intermediate files
+    │    ├── departments_final.csv            # Department names
+    │    ├── final_urls_for_visual_check.csv  # URLs for visual check (intermediate)
+    │    ├── links_final.csv                  # Final links for content analysis
+    │    ├── usagovsearch_urls.csv            # Queries to get second set of URLs (intermediate)
+    │    └── wip_identified.csv               # First set of WIP identified URLs     
     ├── outputs/                     # Contains all generated output files
+    │    ├── counts_final_pre.csv             # Pre count matrix
+    │    ├── counts_final_post.csv            # Post count matrix
+    │    └── snapshots_counts_final.txt       # Pickle file with more attributes
     └── scripts/                     # Contains all code for this project
+         ├── analysis.py                      # Main analysis functions
+         ├── get_content.py                   # Content extraction functions
+         ├── internetarchive.py               # EDGI module
+         ├── sentiment_analysis.py            # Sentiment analysis functions
+         └── utils.py                         # EDGI module
 ```
+
+## Requirements
+- Python 3.x
+- For the sentiment analysis you will need to make sure that the `pysentiment`
+package is correctly installed:
+
+  `pip install git+https://github.com/hanzhichao2000/pysentiment`
+
+  If the [static folder](https://github.com/hanzhichao2000/pysentiment/tree/master/pysentiment/static) does not download, you will need to download it and then
+  copy it to your python packages `pysentiment`folder, which should look like this:
+
+  `cp -R STATIC YOUR_DOWNLOAD_PATH '/usr/local/lib/python3.7/site-packages/pysentiment'`
+- To run `selenium` you will need to make sure that your Chrome Browser's version (which you csn check on your browser's menu: `Chrome > About Chrome`) matches the provided ChromeDriver version (76.0.3809.126). You can download and substitute the driver with the latest [version](https://sites.google.com/a/chromium.org/chromedriver/downloads).
