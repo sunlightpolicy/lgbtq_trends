@@ -167,20 +167,17 @@ def get_changes(df_pre, df_post, id_col, term_cols, ttal_col, department_name=No
 
         return changes_df
 
-def plot_bars(df, x_col, y_col, department_name=None):
+def plot_bars(df, x_col, y_col):
     '''
     Bar plot function
     '''
-    g = sns.catplot(x=x_col, y=y_col, data=df,
+    sns_plot = sns.catplot(x=x_col, y=y_col, data=df,
                 kind='bar', legend=False,
                 height=5, aspect=6/5,
                 color=c('yellow'))
                 #palette=sns.light_palette(c('blue'), n_colors=50)
-    g.set_xticklabels(rotation=90, fontsize=9)
-    g.ax.set_title(department_name)
-    g.ax.set(xlabel='Term', ylabel='Change')
-
-
+    sns_plot.set_xticklabels(rotation=90, fontsize=9)
+    sns_plot.ax.set(xlabel='Term', ylabel='Change')
 
 def plot_changes_dept(df_pre_merged, df_post_merged, col_names, department_list):
     '''
@@ -211,37 +208,8 @@ def plot_changes_dept(df_pre_merged, df_post_merged, col_names, department_list)
         plt.delaxes(axs[n_cols - 1, n_rows - 1])
     plt.tight_layout()
     plt.show()
-    plt.savefig('fig5')
+    #plt.savefig(save_name)
     '''
-    titles, x_lists, y_lists = my_other_module.get_data()
-
-    fig = plt.figure(figsize=(10,60))
-    for i, y_list in enumerate(y_lists):
-        plt.subplot(len(titles), 1, i)
-        plt.xlabel("Some X label")
-        plt.ylabel("Some Y label")
-        plt.title(titles[i])
-        plt.plot(x_lists[i],y_list)
-    fig.savefig('out.png', dpi=100)
-
-    idx = 0
-    for ro in range(0, n_rows):
-        for co in range(0, n_cols): # two columns
-            print('index', idx)
-            if idx <= len(department_list) - 1:
-                df = get_changes(df_pre_merged, df_post_merged, 'id',
-                     col_names, 'ttal', department_list[idx], pctg=False)
-                print(department_list[idx], ro, co)
-                sns.catplot(x='term', y='change', data=df,
-                            kind='bar', legend=False,
-                            color=c('yellow'),
-                            ax=axs[ro][co])
-                idx += 1
-    plt.tight_layout()
-    plt.show()
-
-    f.show()
-    fig, axs = plt.subplots(2, 2)
     for department_name in department_list:
         try:
             #rel_changes = a.get_changes(df_pre_merged, df_post_merged, 'id', col_names, 'ttal', department_name, pctg=True)
@@ -335,7 +303,7 @@ def plot_dpt_changes(df_pre, df_post, cols, control_terms, exclude=None):
     plt.yticks(my_range, ordered_df['department'])
     f.text(0.5, 0.04, 'Total term count', ha='center', va='center', fontsize=11)
     f.set_size_inches(6, 5)
-
+    #plt.savefig(save_name)
     return ordered_df #.sort_values(by='change').set_index('department').rename_axis(None)
 
 def plot_boxplot(df_pre, df_post):
@@ -379,6 +347,8 @@ def plot_normal(df_pre, df_post, column):
     else:
         print('With a p-value of {}, there is evidence that the data is normally distributed'.format(
               p_value))
+
+    #f.savefig(save_name)
 
     return normality
 
