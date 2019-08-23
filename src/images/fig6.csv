@@ -1,0 +1,285 @@
+,id,department,polarity,subjectivity,time
+0,1,U.S. Department of Veterans Affairs,0.5999999828571434,0.19553072516463282,pre
+1,2,U.S. Department of Veterans Affairs,0.6559139749682045,0.32347826030699434,pre
+2,8,U.S. Department of Health and Human Services,0.9642856970663268,0.2994652390402928,pre
+3,9,U.S. Department of Health and Human Services,0.6199999938,0.2004008012016016,pre
+4,11,U.S. Department of Health and Human Services,0.5876288599213519,0.23373493919581942,pre
+5,12,U.S. Department of Health and Human Services,0.6226415035599858,0.215447154033644,pre
+6,13,U.S. Department of Health and Human Services,0.014084506843880186,0.22118379993400686,pre
+7,14,U.S. Department of Health and Human Services,0.3538461511242604,0.2702702697083778,pre
+8,15,U.S. Department of Health and Human Services,0.6666666620370371,0.2666666661728395,pre
+9,22,U.S. Department of Justice,0.28531855916160864,0.35168046743707726,pre
+10,26,U.S. Department of Health and Human Services,0.29365079248551273,0.46069469751244113,pre
+11,34,U.S. Department of Health and Human Services,0.5238095175736962,0.22340425472498868,pre
+12,37,U.S. Department of Health and Human Services,0.36679536537916846,0.21856540065943847,pre
+13,38,U.S. Department of Health and Human Services,0.5222222193209877,0.2085747390398902,pre
+14,39,U.S. Department of Health and Human Services,0.4731182770262458,0.20417124017105243,pre
+15,40,U.S. Department of Health and Human Services,0.41176470346020766,0.22546419068240825,pre
+16,41,U.S. Department of Health and Human Services,0.24489795668471473,0.18317756975106997,pre
+17,42,U.S. Department of Health and Human Services,0.39999999000000025,0.20725388493650837,pre
+18,43,U.S. Department of Health and Human Services,0.4042553148483477,0.29841269746535654,pre
+19,44,U.S. Department of Health and Human Services,0.20930232071389954,0.2067307682368713,pre
+20,45,U.S. Department of Health and Human Services,0.39999999000000025,0.20725388493650837,pre
+21,46,U.S. Department of Health and Human Services,0.5599999888000002,0.23809523696145127,pre
+22,47,U.S. Department of Health and Human Services,0.6315789390581719,0.2558922550306658,pre
+23,48,U.S. Department of Health and Human Services,0.39999999333333347,0.22304832630837054,pre
+24,49,U.S. Department of Health and Human Services,0.5499999980357143,0.24158757528767247,pre
+25,50,U.S. Department of Health and Human Services,0.5051546339674781,0.24189526124215646,pre
+26,51,U.S. Department of Health and Human Services,0.5051546339674781,0.24189526124215646,pre
+27,52,U.S. Department of Health and Human Services,0.31972789006895275,0.26702997250950955,pre
+28,55,U.S. Department of Health and Human Services,0.37499999862132355,0.29215896853688617,pre
+29,56,U.S. Department of Health and Human Services,0.3166666640277778,0.2185792345745369,pre
+30,57,U.S. Department of Health and Human Services,0.30769230177514806,0.24999999879807694,pre
+31,58,U.S. Department of Health and Human Services,0.28985507036336905,0.28991596577748746,pre
+32,59,U.S. Department of Health and Human Services,0.4782608487712674,0.1411042936128571,pre
+33,60,U.S. Department of Health and Human Services,0.4358974331032216,0.23780487768627306,pre
+34,61,U.S. Department of Health and Human Services,0.263565890451295,0.324937027298568,pre
+35,62,U.S. Department of Health and Human Services,0.1666666643518519,0.23920265701261575,pre
+36,63,U.S. Department of Health and Human Services,0.14503816683176973,0.2641129026933208,pre
+37,64,U.S. Department of Health and Human Services,0.06521739059546315,0.197002140905777,pre
+38,65,U.S. Department of Health and Human Services,0.33333332950191574,0.18629550281307172,pre
+39,66,U.S. Department of Health and Human Services,0.4210526204986153,0.151999999392,pre
+40,67,U.S. Department of Health and Human Services,0.38028168746280505,0.24315068451515293,pre
+41,68,U.S. Department of Health and Human Services,-0.09782608642485822,0.22330097060279008,pre
+42,70,U.S. Department of Health and Human Services,0.1737089193722586,0.22903225781824488,pre
+43,71,U.S. Department of Health and Human Services,0.0512820506245891,0.23999999926153848,pre
+44,72,U.S. Department of Health and Human Services,0.45283018654325385,0.28005283978856954,pre
+45,73,U.S. Department of Health and Human Services,0.5172413703923902,0.23015872924540187,pre
+46,74,U.S. Department of Health and Human Services,0.42307691494082855,0.27225130747512405,pre
+47,75,U.S. Department of Health and Human Services,0.8048780291493164,0.2469879503193497,pre
+48,76,U.S. Department of Health and Human Services,0.5406162449842682,0.32994454682999574,pre
+49,77,U.S. Department of Health and Human Services,0.641791039986634,0.32367149680272583,pre
+50,81,U.S. Department of Veterans Affairs,0.5999999828571434,0.19553072516463282,pre
+51,82,U.S. Department of Veterans Affairs,0.6559139749682045,0.32347826030699434,pre
+52,84,U.S. Department of Labor,0.4472727267305785,0.2889667249425686,pre
+53,85,U.S. Department of Health and Human Services,0.38983050186727963,0.3241758223946383,pre
+54,87,U.S. Department of Health and Human Services,0.3333333277777779,0.4054054026661797,pre
+55,88,U.S. Department of Health and Human Services,0.94594592037984,0.26241134565665714,pre
+56,89,U.S. Department of Health and Human Services,0.8666666088888928,0.26315789012003704,pre
+57,91,U.S. Department of Health and Human Services,0.2972972892622354,0.1989247301133079,pre
+58,92,U.S. Department of Health and Human Services,0.636363578512402,0.2075471658953365,pre
+59,93,U.S. Department of Health and Human Services,0.4838709599375652,0.2561983460487672,pre
+60,94,U.S. Department of Health and Human Services,0.8333332986111125,0.2790697641968632,pre
+61,95,U.S. Department of Health and Human Services,0.7611940184896415,0.370165743811239,pre
+62,96,U.S. Department of Health and Human Services,0.6901408353501292,0.22977346203956808,pre
+63,97,U.S. Department of Health and Human Services,0.7037036950160038,0.4153846132544379,pre
+64,98,U.S. Department of Health and Human Services,0.7471264281939491,0.28999999903333334,pre
+65,99,U.S. Department of Health and Human Services,0.544303790578433,0.3657407390474966,pre
+66,100,U.S. Department of Health and Human Services,0.522388051904656,0.2012012005969934,pre
+67,105,U.S. Department of Health and Human Services,0.5555554938271674,0.20454544989669432,pre
+68,106,U.S. Department of Health and Human Services,0.33333332679738575,0.38636363343663915,pre
+69,107,U.S. Department of Health and Human Services,0.23999999760000004,0.309597522261308,pre
+70,108,U.S. Department of Health and Human Services,0.5368956729341077,0.3067915688471572,pre
+71,109,U.S. Department of Health and Human Services,0.4832214748885185,0.30690010267054574,pre
+72,110,U.S. Department of Health and Human Services,0.7692307633136095,0.2658486702129884,pre
+73,111,U.S. Department of Health and Human Services,0.8285714226530613,0.21116138731348208,pre
+74,112,U.S. Department of Health and Human Services,0.6438356120285232,0.20621468897427303,pre
+75,114,U.S. Department of Health and Human Services,0.6886227503675284,0.38927738836998277,pre
+76,115,U.S. Department of Health and Human Services,0.7931034209274682,0.5799999884000002,pre
+77,116,U.S. Department of Health and Human Services,0.6116504824677161,0.3164362514340457,pre
+78,117,U.S. Department of Health and Human Services,0.6685714247510205,0.27515723227176536,pre
+79,118,U.S. Department of Health and Human Services,0.7868852426766998,0.40065681379202495,pre
+80,119,U.S. Department of Health and Human Services,0.7739130367485824,0.5066079272836655,pre
+81,120,U.S. Department of Health and Human Services,0.48432055580376115,0.32799999962514287,pre
+82,121,U.S. Department of Health and Human Services,0.8571428418367351,0.4117647028546713,pre
+83,132,U.S. Department of Housing and Urban Development ,0.5373406183290699,0.32581602354550976,pre
+84,141,U.S. Department of Veterans Affairs,0.7731958683175684,0.29846153754319527,pre
+85,157,U.S. Department of Health and Human Services,0.48333333199074074,0.27820710952225103,pre
+86,158,U.S. Department of Health and Human Services,0.181818181359045,0.21782178205840386,pre
+87,159,U.S. Department of Health and Human Services,0.34571428522040815,0.25463805010744345,pre
+88,168,U.S. Department of Health and Human Services,0.16145181456639324,0.22065727693436696,pre
+89,174,U.S. Department of Health and Human Services,0.4440559432796225,0.18362760828776,pre
+90,180,U.S. Department of Health and Human Services,0.3269841268358349,0.22608428173627762,pre
+91,216,U.S. Department of Health and Human Services,0.5555555478395063,0.35121951048185607,pre
+92,217,U.S. Department of Health and Human Services,0.4482758543400715,0.3085106366568583,pre
+93,218,U.S. Department of Health and Human Services,0.4838709599375652,0.17971014440663727,pre
+94,220,U.S. Department of Health and Human Services,0.5833333211805558,0.3037974664316616,pre
+95,224,U.S. Department of the Interior,0.2499999947916668,0.2152466358060689,pre
+96,225,U.S. Department of the Interior,0.4285714198250731,0.2217194560103192,pre
+97,226,U.S. Department of the Interior,0.23999999520000012,0.2808988748264108,pre
+98,227,U.S. Department of the Interior,0.18279569695918607,0.28971962526567097,pre
+99,228,U.S. Department of the Interior,0.0,0.2666666652991453,pre
+100,229,U.S. Department of the Interior,0.42028984898130656,0.3136363622107438,pre
+101,230,U.S. Department of the Interior,0.3181818109504134,0.25287356176509446,pre
+102,231,U.S. Department of the Interior,0.23529411678200693,0.2815734986733194,pre
+103,233,U.S. Department of the Interior,0.44444443209876583,0.33333333024691364,pre
+104,234,U.S. Department of the Interior,0.0,0.30769230473372783,pre
+105,235,U.S. Department of the Interior,0.17171716998265485,0.1867924524777501,pre
+106,237,U.S. Department of Justice,0.4166666579861113,0.4752475200470543,pre
+107,238,U.S. Department of Justice,0.10344827229488716,0.37662337173216404,pre
+108,239,U.S. Department of Justice,0.08571428448979594,0.33018867768778926,pre
+109,240,U.S. Department of Justice,0.06382978587596201,0.2831325284148643,pre
+110,241,U.S. Department of Justice,-0.16778523377325347,0.36430317759339076,pre
+111,242,U.S. Department of Justice,0.5047318604026312,0.3545861295556006,pre
+112,243,U.S. Department of Justice,0.49934469135079335,0.33896046186629925,pre
+113,244,U.S. Department of Justice,0.5609756063355146,0.3020257821325492,pre
+114,245,U.S. Department of Justice,0.3846153809171598,0.22559652879480147,pre
+115,246,U.S. Department of Justice,0.4898785405268075,0.2702406999231502,pre
+116,247,U.S. Department of Justice,-0.07407407270233199,0.36734693627655146,pre
+117,248,U.S. Department of Justice,0.684210490304711,0.23456789833866792,pre
+118,249,U.S. Department of Justice,0.3387096746878252,0.4147157176765361,pre
+119,250,U.S. Department of Veterans Affairs,0.775999993792,0.3424657524863952,pre
+120,252,U.S. Department of Veterans Affairs,0.7551020331112037,0.3052959492046855,pre
+121,253,U.S. Department of Veterans Affairs,0.7551020331112037,0.3052959492046855,pre
+122,254,U.S. Department of Veterans Affairs,0.8762886507599108,0.20507399533810994,pre
+123,255,U.S. Department of Veterans Affairs,0.7323943610394763,0.37172774771799016,pre
+124,256,U.S. Department of Veterans Affairs,0.8441558331927814,0.35321100755407797,pre
+125,257,Peace Corps,0.6136363566632232,0.3034482748156956,pre
+126,260,U.S. Department of Health and Human Services,0.6944444412294238,0.33749999947265624,pre
+127,264,U.S. Social Security Administration,0.48082595728369926,0.40942028936060354,pre
+128,265,U.S. Department of Health and Human Services,0.7741935359001043,0.2731277521007588,pre
+129,267,U.S. Department of Homeland Security,0.5733333256888891,0.2483443700385948,pre
+130,268,U.S. Department of Homeland Security,0.6734693831736777,0.2574430818608703,pre
+131,269,U.S. Department of Veterans Affairs,0.7857142763605444,0.31226765683171875,pre
+132,271,U.S. Department of Veterans Affairs,0.6568047298413922,0.3580508466990448,pre
+133,274,U.S. Department of Education,0.7192982393044014,0.276699028454614,pre
+134,275,Interagency Working Group,0.5737704823972052,0.38607594692356995,pre
+135,276,Interagency Working Group,0.7962962889231825,0.4122137388846804,pre
+136,277,Interagency Working Group,0.744186037858302,0.3839285697146046,pre
+137,278,Interagency Working Group,0.5178571382334184,0.35555555442680775,pre
+138,279,Interagency Working Group,0.389558231367236,0.2953736651300431,pre
+139,280,Interagency Working Group,0.4265734255790829,0.3220720718302762,pre
+140,281,Interagency Working Group,0.4999999990234375,0.31527093576645876,pre
+141,282,Interagency Working Group,0.3964912266789782,0.29472595626191733,pre
+142,1,U.S. Department of Veterans Affairs,0.5428571273469392,0.19337016467751292,post
+143,2,U.S. Department of Veterans Affairs,0.6739130398156901,0.3205574907307361,post
+144,8,U.S. Department of Health and Human Services,0.9642856970663268,0.2994652390402928,post
+145,9,U.S. Department of Health and Human Services,0.5999999936842106,0.20255863496256155,post
+146,11,U.S. Department of Health and Human Services,0.5876288599213519,0.23373493919581942,post
+147,12,U.S. Department of Health and Human Services,0.6226415035599858,0.215447154033644,post
+148,13,U.S. Department of Health and Human Services,0.46534653004607396,0.25313283144578236,post
+149,14,U.S. Department of Health and Human Services,0.3703703669410151,0.26213592169384486,post
+150,15,U.S. Department of Health and Human Services,0.6619718263241421,0.26691729273135845,post
+151,22,U.S. Department of Justice,0.18552036171113068,0.32660098506078766,post
+152,26,U.S. Department of Health and Human Services,0.29365079248551273,0.4640883969353805,post
+153,34,U.S. Department of Health and Human Services,0.38931297412738186,0.24394785801871907,post
+154,37,U.S. Department of Health and Human Services,0.4179104462018267,0.1914285712918367,post
+155,38,U.S. Department of Health and Human Services,0.47747747532667806,0.23922413767324985,post
+156,39,U.S. Department of Health and Human Services,0.4249999982291667,0.22792022770377943,post
+157,40,U.S. Department of Health and Human Services,0.5722543319522871,0.22643979027952907,post
+158,41,U.S. Department of Health and Human Services,0.27118643837977596,0.1782477338697164,post
+159,42,U.S. Department of Health and Human Services,0.4693877455226991,0.24137930915576694,post
+160,43,U.S. Department of Health and Human Services,0.44827585691636945,0.3595041307458507,post
+161,44,U.S. Department of Health and Human Services,0.625899276072667,0.22419354802549427,post
+162,45,U.S. Department of Health and Human Services,0.4693877455226991,0.24137930915576694,post
+163,46,U.S. Department of Health and Human Services,0.7254901818531337,0.31097560785990486,post
+164,47,U.S. Department of Health and Human Services,0.7142857064364209,0.25348189344434013,post
+165,48,U.S. Department of Health and Human Services,0.47222221566358036,0.2727272716942149,post
+166,49,U.S. Department of Health and Human Services,0.648648646457268,0.26311111087723454,post
+167,50,U.S. Department of Health and Human Services,0.6159420267538332,0.35339308533496405,post
+168,51,U.S. Department of Health and Human Services,0.6159420267538332,0.35339308533496405,post
+169,52,U.S. Department of Health and Human Services,0.43521594539795366,0.27388535006925807,post
+170,55,U.S. Department of Health and Human Services,0.3664122123419381,0.3025404153550342,post
+171,56,U.S. Department of Health and Human Services,0.2972972946189433,0.22839506125844639,post
+172,57,U.S. Department of Health and Human Services,0.33333332407407434,0.27906976527852895,post
+173,58,U.S. Department of Health and Human Services,0.2656249979248047,0.3047619040362812,post
+174,59,U.S. Department of Health and Human Services,0.42857139795918586,0.14285714139941694,post
+175,60,U.S. Department of Health and Human Services,0.4285714256559767,0.2512820508525093,post
+176,61,U.S. Department of Health and Human Services,0.255999998976,0.3419972635540393,post
+177,62,U.S. Department of Health and Human Services,0.11111110934744271,0.2775330384249646,post
+178,63,U.S. Department of Health and Human Services,0.10743801564100813,0.2676991144519931,post
+179,64,U.S. Department of Health and Human Services,0.01204819262592539,0.20959595906667688,post
+180,65,U.S. Department of Health and Human Services,0.14285713605442207,0.1448275852080856,post
+181,66,U.S. Department of Health and Human Services,0.4499999887500003,0.18018017936855776,post
+182,67,U.S. Department of Health and Human Services,0.32835820650478953,0.24814814768861454,post
+183,68,U.S. Department of Health and Human Services,-0.11764705813148789,0.23129251669211903,post
+184,70,U.S. Department of Health and Human Services,0.1698113199537202,0.23766816116853345,post
+185,71,U.S. Department of Health and Human Services,0.09756097441998812,0.2867132857107927,post
+186,72,U.S. Department of Health and Human Services,0.5228426369398851,0.2698630133289548,post
+187,73,U.S. Department of Health and Human Services,0.5172413703923902,0.2283464557939116,post
+188,74,U.S. Department of Health and Human Services,0.34782607939508525,0.25698323878780316,post
+189,75,U.S. Department of Health and Human Services,0.609756082688876,0.32031249749755863,post
+190,76,U.S. Department of Health and Human Services,0.5483870954134316,0.32265812624286777,post
+191,77,U.S. Department of Health and Human Services,0.6396396338771204,0.32551319552635427,post
+192,81,U.S. Department of Veterans Affairs,0.5428571273469392,0.19337016467751292,post
+193,82,U.S. Department of Veterans Affairs,0.6739130398156901,0.3205574907307361,post
+194,84,U.S. Department of Labor,0.39170506822187773,0.2623941957301123,post
+195,85,U.S. Department of Health and Human Services,0.38983050186727963,0.3241758223946383,post
+196,87,U.S. Department of Health and Human Services,0.3333333277777779,0.4054054026661797,post
+197,88,U.S. Department of Health and Human Services,0.94594592037984,0.26241134565665714,post
+198,89,U.S. Department of Health and Human Services,0.8666666088888928,0.25423728382648675,post
+199,91,U.S. Department of Health and Human Services,0.2972972892622354,0.1989247301133079,post
+200,92,U.S. Department of Health and Human Services,0.636363578512402,0.2075471658953365,post
+201,93,U.S. Department of Health and Human Services,0.49999999218750013,0.25396825296044345,post
+202,94,U.S. Department of Health and Human Services,0.8333332986111125,0.2790697641968632,post
+203,95,U.S. Department of Health and Human Services,0.8545454390082647,0.3819444417920525,post
+204,96,U.S. Department of Health and Human Services,0.6901408353501292,0.22977346203956808,post
+205,97,U.S. Department of Health and Human Services,0.7037036950160038,0.4153846132544379,post
+206,98,U.S. Department of Health and Human Services,0.7471264281939491,0.28999999903333334,post
+207,99,U.S. Department of Health and Human Services,0.544303790578433,0.3657407390474966,post
+208,100,U.S. Department of Health and Human Services,0.5072463694601975,0.19602272671584453,post
+209,105,U.S. Department of Health and Human Services,0.5555554938271674,0.20454544989669432,post
+210,106,U.S. Department of Health and Human Services,0.2916666605902779,0.3636363608815427,post
+211,107,U.S. Department of Health and Human Services,0.18681318476029468,0.2799999991384615,post
+212,108,U.S. Department of Health and Human Services,0.5162094750219215,0.2854092524659009,post
+213,109,U.S. Department of Health and Human Services,0.48172757315040676,0.30808597716674924,post
+214,110,U.S. Department of Health and Human Services,0.7761193971931388,0.2696177056949342,post
+215,111,U.S. Department of Health and Human Services,0.8030302969467402,0.2098569154056329,post
+216,112,U.S. Department of Health and Human Services,0.7379310293935791,0.21936459876041664,post
+217,114,U.S. Department of Health and Human Services,0.6886227503675284,0.39110070166018573,post
+218,115,U.S. Department of Health and Human Services,0.7931034209274682,0.6041666540798614,post
+219,116,U.S. Department of Health and Human Services,0.6116504824677161,0.31692307643550294,post
+220,117,U.S. Department of Health and Human Services,0.6685714247510205,0.2760252361576889,post
+221,118,U.S. Department of Health and Human Services,0.7868852426766998,0.40197693508735266,post
+222,119,U.S. Department of Health and Human Services,0.7739130367485824,0.5111111088395062,post
+223,120,U.S. Department of Health and Human Services,0.48432055580376115,0.32799999962514287,post
+224,121,U.S. Department of Health and Human Services,0.8399999832000004,0.4098360622144585,post
+225,132,U.S. Department of Housing and Urban Development ,0.5054704584125372,0.3218309856888514,post
+226,141,U.S. Department of Veterans Affairs,0.6885245845202903,0.3297297288385683,post
+227,157,U.S. Department of Health and Human Services,0.4891304334534499,0.27752639496415804,post
+228,158,U.S. Department of Health and Human Services,0.16788321127035716,0.20427435377521155,post
+229,159,U.S. Department of Health and Human Services,0.3418439711463206,0.24832687557297398,post
+230,168,U.S. Department of Health and Human Services,0.14801444025509694,0.20645962727789824,post
+231,174,U.S. Department of Health and Human Services,0.45762711786842863,0.17976843382700536,post
+232,180,U.S. Department of Health and Human Services,0.33125556530220146,0.21895106256395486,post
+233,216,U.S. Department of Health and Human Services,0.5428571351020409,0.3645833314344618,post
+234,217,U.S. Department of Health and Human Services,0.41818181057851256,0.3142857124897959,post
+235,218,U.S. Department of Health and Human Services,0.4576271108876761,0.1771771766451136,post
+236,220,U.S. Department of Health and Human Services,0.5555555432098769,0.2960526296312327,post
+237,224,U.S. Department of the Interior,0.3043478194706996,0.20814479543825884,post
+238,225,U.S. Department of the Interior,0.4893616917157087,0.21461187116615585,post
+239,226,U.S. Department of the Interior,0.2916666605902779,0.27586206738010305,post
+240,227,U.S. Department of the Interior,0.20879120649679994,0.2870662451512106,post
+241,228,U.S. Department of the Interior,0.03999999920000002,0.26041666531032986,post
+242,229,U.S. Department of the Interior,0.47058822837370257,0.3119266040737312,post
+243,230,U.S. Department of the Interior,0.3809523718820864,0.2470588220761246,post
+244,231,U.S. Department of the Interior,0.22097378194391842,0.27783558764012944,post
+245,233,U.S. Department of the Interior,0.560975596073766,0.36936936604171744,post
+246,234,U.S. Department of the Interior,0.37777776938271623,0.3169014062190042,post
+247,235,U.S. Department of the Interior,0.17171716998265485,0.1864406776149893,post
+248,237,U.S. Department of Justice,0.4166666579861113,0.4752475200470543,post
+249,238,U.S. Department of Justice,0.10344827229488716,0.37662337173216404,post
+250,239,U.S. Department of Justice,0.08571428448979594,0.33018867768778926,post
+251,240,U.S. Department of Justice,0.06382978587596201,0.2831325284148643,post
+252,241,U.S. Department of Justice,-0.16778523377325347,0.36430317759339076,post
+253,242,U.S. Department of Justice,0.5047318604026312,0.3545861295556006,post
+254,243,U.S. Department of Justice,0.49934469135079335,0.33880994656358354,post
+255,244,U.S. Department of Justice,0.5609756063355146,0.3020257821325492,post
+256,245,U.S. Department of Justice,0.3846153809171598,0.22559652879480147,post
+257,246,U.S. Department of Justice,0.4898785405268075,0.2702406999231502,post
+258,247,U.S. Department of Justice,-0.07407407270233199,0.36734693627655146,post
+259,248,U.S. Department of Justice,0.684210490304711,0.23456789833866792,post
+260,249,U.S. Department of Justice,0.3728813527721919,0.4322344306511559,post
+261,250,U.S. Department of Veterans Affairs,0.7024793330373609,0.34472934374720987,post
+262,252,U.S. Department of Veterans Affairs,0.47727272184917363,0.35918367200333196,post
+263,253,U.S. Department of Veterans Affairs,0.47727272184917363,0.35918367200333196,post
+264,254,U.S. Department of Veterans Affairs,0.7656249940185548,0.23063063021507996,post
+265,255,U.S. Department of Veterans Affairs,0.6951219469809637,0.385882352033218,post
+266,256,U.S. Department of Veterans Affairs,0.6399999872000003,0.3205128184582512,post
+267,257,Peace Corps,0.614457823922195,0.3074074062688615,post
+268,260,U.S. Department of Health and Human Services,0.7382198914229325,0.3327526126607097,post
+269,264,U.S. Social Security Administration,0.5039370058900118,0.41983471004986,post
+270,265,U.S. Department of Health and Human Services,0.546391746944415,0.2966360847197673,post
+271,267,U.S. Department of Homeland Security,0.5733333256888891,0.2483443700385948,post
+272,268,U.S. Department of Homeland Security,0.6734693831736777,0.2538860099242038,post
+273,269,U.S. Department of Veterans Affairs,0.7826086871455578,0.30872483117877575,post
+274,271,U.S. Department of Veterans Affairs,0.6067415696250473,0.35177865543126746,post
+275,274,U.S. Department of Education,0.6666666587301588,0.30996309848722103,post
+276,275,Interagency Working Group,0.6363636267217633,0.4399999970666667,post
+277,276,Interagency Working Group,0.8230088422742581,0.444881888012276,post
+278,277,Interagency Working Group,0.7777777691358025,0.4128440348034677,post
+279,278,Interagency Working Group,0.6867469796777472,0.28620689556480383,post
+280,279,Interagency Working Group,0.4273858903427971,0.2975308638302088,post
+281,280,Interagency Working Group,0.4502369657577323,0.3256172836993694,post
+282,281,Interagency Working Group,0.5238095227702192,0.3175803400645366,post
+283,282,Interagency Working Group,0.4201954383706989,0.2954764193498783,post

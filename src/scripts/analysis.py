@@ -1,16 +1,16 @@
+from matplotlib.colors import ListedColormap
+from IPython.display import display_html
+import matplotlib.ticker as ticker
+import matplotlib.pyplot as plt
+from scipy import stats
+import seaborn as sns
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 import matplotlib
 import pickle
 import math
-import matplotlib.ticker as ticker
-from matplotlib.colors import ListedColormap
-from scipy import stats
-from IPython.display import display_html
+import re
 
-#sns.set_style("whitegrid")
 # setting sunlight foundation colors for graphs
 sns.set(font='Arial', style="whitegrid")
 sunlight = ["#d9b80d", "#ce4500", "#2e565a", "#323235", "#fafaf5"]
@@ -39,12 +39,14 @@ def fetch_additional_data(txt_name, multi_word_terms, one_word_terms):
     '''
     with open (txt_name, 'rb') as fp:
         snapshots = pickle.load(fp)
+        print(len(snapshots))
     multi_word_terms = [' '.join(map(str, multi_word_terms[i])) for i in range(len(multi_word_terms))]
     #print('snapshots len', len(snapshots))
     col_names = one_word_terms + multi_word_terms
     #print(len(snapshots))
 
     ids = [snapshot.id for snapshot in snapshots]
+    print(len(ids), len(set(ids)))
     ttal_post = [snapshot.post['word_count'] for snapshot in snapshots]
     ttal_pre = [snapshot.pre['word_count'] for snapshot in snapshots]
     status = [snapshot.status for snapshot in snapshots]
@@ -95,23 +97,31 @@ def get_final_df(department_file, multi_word_terms, one_word_terms, output_file)
     Constructs the final dataframe that is used in further analysis.
 
     Inputs:
-        - department_file (str):
-        - multi_word_terms (lst):
-        - one_word_terms (lst):
-        - output_file (str):
+        - department_file (str): path to file with department names and ids
+        - multi_word_terms (lst): multiword list of terms
+        - one_word_terms (lst): list of one word terms
+        - output_file (str): path for output file
+
+    Outputs:
+        - df_pre (df): a pandas pre dataframe with all the collected data
+        - df_post (df): a pandas post dataframe with all the collected data
+        - col_names (lst): list of names with proper format
     '''
     pickle_file = 'outputs/snapshots_{}.txt'.format(output_file)
     df_pre_additional, df_post_additional, col_names = fetch_additional_data(
                                                        pickle_file,
                                                        multi_word_terms,
                                                        one_word_terms)
+    print(len(df_pre_additional), len(df_post_additional))
     df_pre_clean = clean_matrix('outputs/{}_pre.csv'.format(output_file), col_names)
     df_post_clean = clean_matrix('outputs/{}_post.csv'.format(output_file), col_names)
+    print(len(df_pre_clean), len(df_post_clean))
     # merge additional data to matrix
     df_pre = df_pre_clean.merge(df_pre_additional, how='left',
                                        left_on='id', right_on='id')
     df_post = df_post_clean.merge(df_post_additional, how='left',
                                         left_on='id', right_on='id')
+    print(len(df_pre), len(df_post))
     # merge department data
     if department_file:
         df_departments = pd.read_csv(department_file)
@@ -194,6 +204,7 @@ def plot_changes_dept(df_pre_merged, df_post_merged, col_names, department_list)
     for i, department_name in enumerate(department_list):
         df = get_changes(df_pre_merged, df_post_merged, 'id',
              col_names, 'ttal', department_name, pctg=False)
+        df.to_csv('images/fig5_{}.csv'.format(re.sub(r"[^a-zA-Z0-9]+", '', department_name)))
         plt.subplot(n_rows, n_cols, i + 1)
         plt.xlabel("Terms", fontsize=9, fontfamily='Arial')
         plt.ylabel("Change", fontsize=9, fontfamily='Arial')
@@ -208,6 +219,7 @@ def plot_changes_dept(df_pre_merged, df_post_merged, col_names, department_list)
         plt.delaxes(axs[n_cols - 1, n_rows - 1])
     plt.tight_layout()
     plt.show()
+
     #plt.savefig(save_name)
     '''
     for department_name in department_list:
@@ -219,11 +231,10 @@ def plot_changes_dept(df_pre_merged, df_post_merged, col_names, department_list)
             pass
     '''
 
-
 def plot_dpt_changes(df_pre, df_post, cols, control_terms, exclude=None):
     '''
     Plots discontinuous lollipop graph
-    Source: https://python-graph-gallery.com/184-lollipop-plot-with-2-groups/
+    Reference: https://python-graph-gallery.com/184-lollipop-plot-with-2-groups/
     '''
     # handle data
     col_names = cols[:]
@@ -325,7 +336,8 @@ def plot_boxplot(df_pre, df_post):
 
 def plot_normal(df_pre, df_post, column):
     '''
-    https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.shapiro.html
+    Plot distribution
+    Reference: https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.shapiro.html
     '''
     df_pre = df_pre[[column, 'id']]
     df_post = df_post[[column, 'id']]
@@ -357,7 +369,7 @@ def test_significance(df_pre, df_post, column, significance, normality):
     Tests for the signficance in the change of a variable pre and post
     If the p-value is lower than the chosen signficance (1, 5, 10)
     Wilcoxon signed-rank Test
-    https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.stats.wilcoxon.html
+    Reference: https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.stats.wilcoxon.html
     '''
     if normality:
         statistic, p_value = stats.ttes_rel(df_pre[column], df_post[column])
@@ -374,7 +386,8 @@ def test_significance(df_pre, df_post, column, significance, normality):
 
 def display_side_by_side(*args):
     '''
-    attribution: https://stackoverflow.com/questions/38783027/jupyter-notebook-display-two-pandas-tables-side-by-side
+    Display two pandas dataframes side by side
+    Attribution: https://stackoverflow.com/questions/38783027/jupyter-notebook-display-two-pandas-tables-side-by-side
     '''
     html_str=''
     for df in args:
