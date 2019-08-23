@@ -29,7 +29,7 @@ departments saw some degree of substitution, using more inclusive terms, whereas
 others, like HUD, saw decreases across the board.
 
 **Figure 1. Absolute Changes by Department**
-![Image](https://github.com/sunlightpolicy/lgbtq_trends/blob/master/src/images/fig4.png "Changes by department")
+![Image](https://github.com/sunlightpolicy/lgbtq_trends/blob/master/src/images/fig3.png "Changes by department")
 
 Read more about our results [here](https://linktoreport)
 
