@@ -39,14 +39,13 @@ def fetch_additional_data(txt_name, multi_word_terms, one_word_terms):
     '''
     with open (txt_name, 'rb') as fp:
         snapshots = pickle.load(fp)
-        print(len(snapshots))
     multi_word_terms = [' '.join(map(str, multi_word_terms[i])) for i in range(len(multi_word_terms))]
     #print('snapshots len', len(snapshots))
     col_names = one_word_terms + multi_word_terms
     #print(len(snapshots))
 
     ids = [snapshot.id for snapshot in snapshots]
-    print(len(ids), len(set(ids)))
+    #print(len(ids), len(set(ids)))
     ttal_post = [snapshot.post['word_count'] for snapshot in snapshots]
     ttal_pre = [snapshot.pre['word_count'] for snapshot in snapshots]
     status = [snapshot.status for snapshot in snapshots]
@@ -86,7 +85,6 @@ def clean_matrix(csv_name, col_names):
         the content was succesfully extracted
     '''
     df = pd.read_csv(csv_name, names=col_names, header=None)
-    #print(col_names)
     df['id'] = df.index + 1 #constructs consecutive id
     df_clean = df.dropna()
 
@@ -112,16 +110,16 @@ def get_final_df(department_file, multi_word_terms, one_word_terms, output_file)
                                                        pickle_file,
                                                        multi_word_terms,
                                                        one_word_terms)
-    print(len(df_pre_additional), len(df_post_additional))
+    #print(len(df_pre_additional), len(df_post_additional))
     df_pre_clean = clean_matrix('outputs/{}_pre.csv'.format(output_file), col_names)
     df_post_clean = clean_matrix('outputs/{}_post.csv'.format(output_file), col_names)
-    print(len(df_pre_clean), len(df_post_clean))
+    #print(len(df_pre_clean), len(df_post_clean))
     # merge additional data to matrix
     df_pre = df_pre_clean.merge(df_pre_additional, how='left',
                                        left_on='id', right_on='id')
     df_post = df_post_clean.merge(df_post_additional, how='left',
                                         left_on='id', right_on='id')
-    print(len(df_pre), len(df_post))
+    #print(len(df_pre), len(df_post))
     # merge department data
     if department_file:
         df_departments = pd.read_csv(department_file)

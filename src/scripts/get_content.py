@@ -17,8 +17,11 @@ import time
 import csv
 import re
 
+#nltk.download('stopwords')
+
 default_stopwords = set(nltk.corpus.stopwords.words('english'))
 all_stopwords = default_stopwords
+#download nltk
 
 ################################################################################
 # Main functions for extracting content ########################################
@@ -114,7 +117,9 @@ def get_output(input_file, output_file, terms, dates_1, dates_2, store_text=True
     len_data = len(data)
     idx_e = 0
     for elmt in tqdm(data, desc='progress: '):
+        #print('in tqdm loop')
         current_url = elmt[0] # grab url
+        #print(current_url)
         #print(current_url)
         try:
             with internetarchive.WaybackClient() as client:
@@ -140,11 +145,13 @@ def get_output(input_file, output_file, terms, dates_1, dates_2, store_text=True
                     status_codes = ['200', '-'] #, '301'
                     post_versions = list(post_dump)[::-1]
                     for i_post, current_version in enumerate(post_versions):
+                        #print('in first for loop')
                         # get most recent viable version of post
                         if any(current_version.status_code == code for code in status_codes):
                             current_url = current_version.raw_url #switch to IAWM version
                             pre_versions = list(pre_dump)[::-1]
                             for i_pre, latest_version in enumerate(pre_versions):
+                                #print('in second for loop')
                                 # get most recent viable version of pre
                                 if any(latest_version.status_code == code for code in status_codes):
                                     # found the latest viable version for both timeframes
@@ -153,6 +160,7 @@ def get_output(input_file, output_file, terms, dates_1, dates_2, store_text=True
                                     snapshot.instantiate_object(latest_version.date, current_version.date)
                                     matrix_post[idx_e] = snapshot.post['results']
                                     matrix_pre[idx_e] = snapshot.pre['results']
+                                    #print('success')
                                     break
                                 elif i_pre == len(pre_versions) - 1:
                                     # not able to retrieve both viable versions succesfully
@@ -162,11 +170,14 @@ def get_output(input_file, output_file, terms, dates_1, dates_2, store_text=True
                                     row = [None] * len(terms) # update matrix with Nones
                                     matrix_pre[idx_e] = row
                                     matrix_post[idx_e] = row
+                                    #print('no viable pre post pair')
                                 else:
+                                    #print('continue searching pre version')
                                     # still searching pre version
                                     continue
+                            #print('breaking from pre and post loops')
                             break
-                        elif i_post == len(pre_versions) - 1:
+                        elif i_post == len(post_versions) - 1:
                             # unsuccesful search of viable post
                             snapshot = Snapshot(idx_e + 1, current_url, None, terms, store_text)
                             snapshot.status = 'failed'
@@ -174,10 +185,12 @@ def get_output(input_file, output_file, terms, dates_1, dates_2, store_text=True
                             row = [None] * len(terms) # update matrix with Nones
                             matrix_pre[idx_e] = row
                             matrix_post[idx_e] = row
+                            #print('no viable post')
                         else:
                             # still searching post version
+                            #print('continue searching post version')
                             continue
-                        break
+                            #print('outside second loop')
                 except Exception as e: # unparseable format
                     snapshot = Snapshot(idx_e + 1, current_url, None, terms, store_text)
                     snapshot.status = 'failed'
@@ -185,6 +198,7 @@ def get_output(input_file, output_file, terms, dates_1, dates_2, store_text=True
                     row = [None] * len(terms) # update matrix with Nones
                     matrix_pre[idx_e] = row
                     matrix_post[idx_e] = row
+                    #print('e1:', e)
         except Exception as e: # no wayback url
             snapshot = Snapshot(idx_e + 1, current_url, None, terms, store_text)
             snapshot.status = 'failed'
@@ -192,10 +206,19 @@ def get_output(input_file, output_file, terms, dates_1, dates_2, store_text=True
             row = [None] * len(terms) # update matrix with Nones
             matrix_pre[idx_e] = row
             matrix_post[idx_e] = row
+            #print('e2:', e)
 
         snapshot_lst.append(snapshot)
         idx_e += 1
-        #print(idx_e, len(snapshot_lst), current_url)
+
+        print(idx_e, len(snapshot_lst))
+        print(snapshot.id)
+        print(snapshot.post['url'])
+        print(snapshot.pre['url'])
+        print(snapshot.post['results'])
+        print(snapshot.post['text'])
+        print('***********')
+
 
     save_csv(matrix_pre, output_file,'_pre')
     save_csv(matrix_post, output_file,'_post')
