@@ -1,3 +1,6 @@
+'''
+Main analysis script
+'''
 from matplotlib.colors import ListedColormap
 from IPython.display import display_html
 import matplotlib.ticker as ticker
