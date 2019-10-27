@@ -225,7 +225,7 @@ def plot_changes_dept(df_pre_merged, df_post_merged, col_names, ctrl_terms, depa
     for i, department_name in enumerate(department_list):
         df = get_changes(df_pre_merged, df_post_merged, 'id',
              col_names, 'ttal', ctrl_terms, department_name, pctg=False)
-        df.to_csv('images/fig5_{}.csv'.format(re.sub(r"[^a-zA-Z0-9]+", '', department_name)))
+        #df.to_csv('images/fig5_{}.csv'.format(re.sub(r"[^a-zA-Z0-9]+", '', department_name)))
         plt.subplot(n_rows, n_cols, i + 1)
         plt.xlabel("Terms", fontsize=9, fontfamily='Arial')
         plt.ylabel("Change", fontsize=9, fontfamily='Arial')
