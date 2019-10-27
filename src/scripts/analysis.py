@@ -131,11 +131,12 @@ def get_final_df(department_file, multi_word_terms, one_word_terms, output_file)
 
     return df_pre, df_post, col_names
 
-def get_changes(df_pre, df_post, id_col, term_cols, ttal_col, department_name=None, pctg=True):
+def get_changes(df_pre, df_post, id_col, term_cols, ttal_col, ctrl_terms, department_name=None, pctg=True):
     '''
     Gets changes in total values or as the change in the prevalence (term /
     total words) of all terms
     '''
+
     if department_name:
         print(department_name)
         df_pre = df_pre[df_pre.department == department_name]
@@ -152,9 +153,19 @@ def get_changes(df_pre, df_post, id_col, term_cols, ttal_col, department_name=No
 
         grand_ttal_pre = df_pre[term_cols].sum().sum() / ttal_pre
         grand_ttal_post = df_post[term_cols].sum().sum() / ttal_post
-        delta = ((grand_ttal_post / grand_ttal_pre) - 1) * 100
-        print("The relative number of terms changed {} %, from {} to {}".format(
-            '%.2f'%(delta), '%.3f'%(grand_ttal_pre), '%.3f'%(grand_ttal_post)))
+        ttal_ctrl_pre = 0
+        ttal_ctrl_post = 0
+        for term in ctrl_terms:
+            ttal_ctrl_pre += df_pre[term].sum().sum() / ttal_pre
+            ttal_ctrl_post += df_post[term].sum().sum() / ttal_post
+
+        delta = (((grand_ttal_post - ttal_ctrl_post) / (grand_ttal_pre - ttal_ctrl_pre)) - 1) * 100
+        print("The relative number of terms changed {} %, from {} to {}, excluding {}".format(
+            '%.2f'%(delta),
+            '%.4f'%(grand_ttal_pre - ttal_ctrl_pre),
+            '%.4f'%(grand_ttal_post - ttal_ctrl_post),
+            ctrl_terms
+            ))
         #test_significance(df_pre[term_cols], df_post[term_cols], column, significance, normality)
         # percentage change
         changes = ((pct_post / pct_pre) - 1) * 100
@@ -172,9 +183,18 @@ def get_changes(df_pre, df_post, id_col, term_cols, ttal_col, department_name=No
         changes_df = changes_df[changes_df.change != 0]
         grand_ttal_pre = df_pre[term_cols].sum().sum()
         grand_ttal_post = df_post[term_cols].sum().sum()
-        delta = ((grand_ttal_post / grand_ttal_pre) - 1) * 100
-        print("The absolute number of terms changed {} %, from {} to {}".format(
-            '%.2f'%(delta), '%.0f'%(grand_ttal_pre), '%.0f'%(grand_ttal_post)))
+        ttal_ctrl_pre = 0
+        ttal_ctrl_post = 0
+        for term in ctrl_terms:
+            ttal_ctrl_pre += df_pre[term].sum().sum()
+            ttal_ctrl_post += df_post[term].sum().sum()
+        delta = (((grand_ttal_post - ttal_ctrl_post) / (grand_ttal_pre - ttal_ctrl_pre)) - 1) * 100
+        print("The absolute number of terms changed {} %, from {} to {}, excluding {}".format(
+            '%.2f'%(delta),
+            '%.0f'%(grand_ttal_pre - ttal_ctrl_pre),
+            '%.0f'%(grand_ttal_post - ttal_ctrl_post),
+            ctrl_terms
+            ))
 
         return changes_df
 
@@ -190,13 +210,13 @@ def plot_bars(df, x_col, y_col):
     sns_plot.set_xticklabels(rotation=90, fontsize=9)
     sns_plot.ax.set(xlabel='Term', ylabel='Change')
 
-def plot_changes_dept(df_pre_merged, df_post_merged, col_names, department_list):
+def plot_changes_dept(df_pre_merged, df_post_merged, col_names, ctrl_terms, department_list):
     '''
     Plot changes by department
     '''
     n_cols = 2
     n_rows = math.ceil(len(department_list) / n_cols)
-    print('number of rows', n_rows)
+    #print('number of rows', n_rows)
     if n_rows == 2:
         fig, axs = plt.subplots(n_rows, n_cols, figsize=(7.5, 7.5))
     elif n_rows == 3:
@@ -204,7 +224,7 @@ def plot_changes_dept(df_pre_merged, df_post_merged, col_names, department_list)
 
     for i, department_name in enumerate(department_list):
         df = get_changes(df_pre_merged, df_post_merged, 'id',
-             col_names, 'ttal', department_name, pctg=False)
+             col_names, 'ttal', ctrl_terms, department_name, pctg=False)
         df.to_csv('images/fig5_{}.csv'.format(re.sub(r"[^a-zA-Z0-9]+", '', department_name)))
         plt.subplot(n_rows, n_cols, i + 1)
         plt.xlabel("Terms", fontsize=9, fontfamily='Arial')
