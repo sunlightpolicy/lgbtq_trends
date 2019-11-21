@@ -29,7 +29,7 @@ Our examination of key case studies of changed LGBTQ-related content on federal 
 2. The removal of resources containing LGBTQ community-specific information
 
 
-**Figure. Absolute Changes by Department**
+**Figure. Absolute Changes by Department, August 2019**
 ![Image](https://github.com/sunlightpolicy/lgbtq_trends/blob/master/src/images/fig3.png "Changes by department")
 
 Read more about our results [here](https://sunlightfoundation.com/web-integrity-project/)
