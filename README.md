@@ -44,11 +44,11 @@ This repository's structure is as follows:
 └── src/                             # Contains all code and outputs
     ├── content_analysis.ipynb       # Analysis and results notebook, generic version available
     ├── data_detail.csv              # Metadata for obtained url set
-    ├── hhs/                         # Contains .csv file with all crawled links from hhs
     ├── images/                      # Contains image .png files with corresponding .csv file
     ├── inputs/                      # Contains input and intermediate files
     │    ├── departments_final.csv            # Department names
     │    ├── final_urls_for_visual_check.csv  # URLs for visual check (intermediate)
+    │    ├── hhslinks_final.csv               # Final links for hhs analysis (from wayback machine)    
     │    ├── links_final.csv                  # Final links for content analysis  
     │    ├── usagovsearch_urls.csv            # Queries to get second set of URLs (intermediate)
     │    └── wip_identified.csv               # First set of WIP identified URLs  
