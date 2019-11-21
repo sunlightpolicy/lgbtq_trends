@@ -1,9 +1,8 @@
 # LGBTQ trends
-Code for content analysis of federal websites
+Code and functions for content analysis of federal websites
 
 ## Background
-These scripts perform the analysis for Sunlight Foundation's [REPORT NAME HERE](https://linktoreport), which looks at how the use of LGBTQ-related terms has changed
-between the Obama and Trump administrations across federal department websites.
+These scripts were used in the analysis for Sunlight Foundation's [Identity, Protections, and Data Coverage: How LGBTQ-related language and content has changed under the Trump Administration](https://sunlightfoundation.com/web-integrity-project/), which looks at how the use of LGBTQ-related terms has changed between the Obama and Trump administrations across federal department websites.
 
 ## Methodology
 We pooled together a set of WIP-identified URLs (1) with a set of URLs coming
@@ -17,21 +16,23 @@ support sentiment analysis that is tailored to the set of analyzed URLs.
 To compare websites before and after the 2017 inauguration, we rely
 on websites archived on the Internet Archive’s Wayback Machine [IAWM](https://archive.org/web/) website archives.
 
-Read more about the methodology [here](https://linktoreport)
+Read more about the methodology [here](https://sunlightfoundation.com/web-integrity-project/)
 
 ## Results
-We find that, on the aggregate, there has been a modest increase in the use of
-LGBTQ-related terms across the analyzed domains, mainly driven by changes in the
-HHS domain, and that their relative importance has barely changed. However, at
-the department level, we find that out of the eleven departments that we
-analyzed, seven saw decreases in the use of LGBTQ-related terms. Some
-departments saw some degree of substitution, using more inclusive terms, whereas
-others, like HUD, saw decreases across the board.
+Our analysis of almost 150 federal government webpages on LGBTQ-related topics, all of which were created before President Trump took office and continue to be live on the web, reveals that, under the Trump administration, federal government webpages addressing LGBTQ-related topics use the terms “gender” and “transgender” more and the terms “sex” less. However, there is considerable variation between departments and within departments.
 
-**Figure. Absolute Changes by Department**
+Our analysis of 1,875 HHS.gov webpages on all topics for LGBTQ-related terms, showed that LGBTQ-related terms are used less often under the Trump administration with a 25% reduction in the use of the term “gender” and a 40% reduction in the use of “transgender.”
+By contrast, the use of terms like “faith-based and community organizations,” “religious freedom,” and “conscience protection” all increased markedly.
+
+Our examination of key case studies of changed LGBTQ-related content on federal agency websites identifies two key trends: 
+1. The removal of access to resources about discrimination protections and prevention, especially for transgender individuals
+2. The removal of resources containing LGBTQ community-specific information
+
+
+**Figure. Absolute Changes by Department, August 2019**
 ![Image](https://github.com/sunlightpolicy/lgbtq_trends/blob/master/src/images/fig3.png "Changes by department")
 
-Read more about our results [here](https://linktoreport)
+Read more about our results [here](https://sunlightfoundation.com/web-integrity-project/)
 
 ## Repository structure
 This repository's structure is as follows:
@@ -42,23 +43,15 @@ This repository's structure is as follows:
 ├── requirements.txt                 
 └── src/                             # Contains all code and outputs
     ├── content_analysis.ipynb       # Analysis and results notebook, generic version available
-    ├── content_analysis_generic.ipynb
     ├── data_detail.csv              # Metadata for obtained url set
-    ├── hud/                         # Contains .csv files with all crawled links from hud
-    ├── images/                      # Contains image .png files with corresponding .csv files
+    ├── hhs/                         # Contains .csv file with all crawled links from hhs
+    ├── images/                      # Contains image .png files with corresponding .csv file
     ├── inputs/                      # Contains input and intermediate files
     │    ├── departments_final.csv            # Department names
     │    ├── final_urls_for_visual_check.csv  # URLs for visual check (intermediate)
-    │    ├── links_final.csv                  # Final links for content analysis
-    │    ├── links_hud.csv                    # Final hud links for content analysis    
+    │    ├── links_final.csv                  # Final links for content analysis  
     │    ├── usagovsearch_urls.csv            # Queries to get second set of URLs (intermediate)
-    │    └── wip_identified.csv               # First set of WIP identified URLs     
-    ├── outputs/                     # Contains all generated output files
-    │    ├── counts_final_pre.csv             # Pre count matrix
-    │    ├── counts_final_post.csv            # Post count matrix
-    │    ├── counts_hud_pre.csv               # Pre count matrix (hud)
-    │    ├── counts_hud_post.csv              # Post count matrix (hud)
-    │    └── snapshots_counts_final.txt       # Pickle file with more attributes
+    │    └── wip_identified.csv               # First set of WIP identified URLs  
     └── scripts/                     # Contains all code for this project
          ├── analysis.py                      # Main analysis functions
          ├── chromedriver                     # Driver for webscraping
